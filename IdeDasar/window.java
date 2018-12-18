@@ -17,19 +17,22 @@ import java.awt.Font;
 import javax.swing.SpringLayout.Constraints;
 
 public class window extends JFrame implements KeyListener{
-    private int     height  = 600;
-    private int     width   = 600;
-    private String  title   = "2048";
-    Game    board           = new Game(); 
-    JLabel  boardTile[][]   = new JLabel[4][4];
+    private static final long serialVersionUID = 1L; //entah kenapa ini autogenerate ? wkwk kalau dihapus ada warning doang sih , tpi pengaruh waktu penjalanan 
+
+    int     height = 600;
+    int     width   = 600;
+    String  title   = "2048";
+
+    Game    board           = new Game();       //menginialisasi boardgame 
+    JLabel  boardTile[][]   = new JLabel[4][4]; //Membuat array yang berisi JLabel 4x4
     Border  border          = BorderFactory.createLineBorder(Color.BLUE,5); //untuk border pada JLabel
 
-    window(){ //memunculkan window (lebih tepatnya inisialisasi awal)
-        setSize(getwidth(),getheight()); //setting ukuran window
+    public void showWindow(){   //memunculkan window (lebih tepatnya inisialisasi awal)
+        setSize(height, width); //setting ukuran window
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Setting tombol close untuk dapat menghentikan game
         setResizable(false); // mensetting agar tak dapat di ubah ukuran nya
-        setTitle(gettitle()); // set judul window ... variabel judul ada di atas kalau mau di atur wkwk
-        setLayout(new GridLayout(4,4));// mensetting bentuk agar menjadi bentuk grid [  ] [  ] 4,4 berarti 4 kolom 4 baris
+        setTitle(title); // set judul window ... variabel judul ada di atas kalau mau di atur wkwk
+        setLayout(new GridLayout(4, 4)); // mensetting bentuk agar menjadi bentuk grid [  ] [  ] 4,4 berarti 4 kolom 4 baris
         addKeyListener(this); //menambahkan window agar key keyboard dan window dapat berhubungan , harus membuat beberapa kelas yang berhubungan dengan key , key pressed , key typed , dan key released
         for(int row=0;row<4;row++){
             for(int column=0;column<4;column++){
@@ -47,34 +50,10 @@ public class window extends JFrame implements KeyListener{
     public void update(){ //Pengupdate bentuk grid ke windows 
         for(int row=0;row<4;row++){
             for(int column=0;column<4;column++){
-                boardTile[row][column].setText(String.valueOf(board.getBoardLabel()[row][column])); //mengikuti isi array Game 
+                boardTile[row][column].setText(String.valueOf(board.boardLabel[row][column])); //mengikuti isi array Game 
                 // boardTile[row][column].setForeground(new Color(100,200,30)); //kemudian mengeset warna background sesuai dengan angka 
             }
         }
-    }
-
-    public int getheight(){
-        return this.height;
-    }
-    
-    public void setheight(int height){
-        this.height = height;
-    }
-    
-    public int getwidth(){
-        return this.width;
-    }
-
-    public void setwidth(int width){
-        this.width = width;
-    }
-
-    public String gettitle(){
-        return this.title;
-    }
-
-    public void settitle(String title){
-        this.title = title;
     }
 
     @Override
@@ -83,8 +62,9 @@ public class window extends JFrame implements KeyListener{
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        int[][] copy = board.copyTableData();
-        int keyCode = e.getKeyCode();
+        // System.out.println(board.boardSpawnerChecker()); 
+        int[][] copy = board.copyTableData();   //mengkopi tabel terlebih dahulu , nanti untuk mengecek apakah sebelum digerakan == sesudah di gerakan
+        int keyCode = e.getKeyCode();   // mendapatkan inputan key mana yang tertekan
         if( keyCode == KeyEvent.VK_UP) {  //jika tombol atas
             board.up3();                    //melakukan fungsi up3 
         }
@@ -97,17 +77,20 @@ public class window extends JFrame implements KeyListener{
         else if(keyCode == KeyEvent.VK_RIGHT){ //jika tombol kanan
             board.right();
         }
-        if(board.boardSpawnerChecker() == true || board.possibleMove() == true){
-            if(Arrays.deepEquals(board.getBoardLabel(),copy)){  // jika tidak ada perbedaan (tabel sebelum di gerakan, dan tabel sesudah di gerakan)
+        if(board.boardSpawnerChecker() == true || board.possibleMove() == true){ // jika ada tempat untuk di isi oleh angka 2 / 4 , atauu ada yang bisa di gerakan ...
+
+            // boolean boardIsSame = Arrays.deepEquals(board.boardLabel,copy);
+            if(Arrays.deepEquals(board.boardLabel,copy)){  // jika tidak ada perbedaan (tabel sebelum di gerakan, dan tabel sesudah di gerakan)
                 //bruh do nothingggg wkwk
             }else{ //nah jika ada yang bergerak
                 board.spawnNumber(); //memunculkan angka 2 / 4 di tempat yang kosong 
                 update();             // update windows untuk menyesuaikan dengan board game
-                // board.printBoard();  //ini cuma untuk print di versi terminal nya saja
+                board.printBoard();  //ini cuma untuk print di versi terminal nya saja
             }
-        }else{
+        }
+        else{
             System.out.println("GAME OVER"); //jika tidak ada tempat dan tidak ada move yang bisa ... 
-            GameOver();
+            GameOver(); // sorry dude , Game Over wkwk
         }
     }
 
@@ -115,6 +98,7 @@ public class window extends JFrame implements KeyListener{
     public void keyTyped(KeyEvent e) { //g pakai sih wkwk , 
         
     }
+    
 
     public void GameOver(){ // saat game berakhir
         JFrame resetFrame = new JFrame("GAME OVER"); //menginisialisasi reset frame
@@ -133,4 +117,5 @@ public class window extends JFrame implements KeyListener{
         resetFrame.add(resetButton); //kita tambahkan button ke dalam window 
         resetFrame.setVisible(true); // menampilkan nya saat game kalah (kalau ditanya kenapa di letakan di bawah tidak apa apa sih wkwk ... tak berbeda ..)
     }
+
 }
