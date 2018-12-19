@@ -28,6 +28,7 @@ public class window extends JFrame implements KeyListener{
         setSize(getwidth(),getheight()); //setting ukuran window
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Setting tombol close untuk dapat menghentikan game
         setResizable(false); // mensetting agar tak dapat di ubah ukuran nya
+        setLocationRelativeTo(null); //menset agar lokasi JFrame berada di tengah layar
         setTitle(gettitle()); // set judul window ... variabel judul ada di atas kalau mau di atur wkwk
         setLayout(new GridLayout(4,4));// mensetting bentuk agar menjadi bentuk grid [  ] [  ] 4,4 berarti 4 kolom 4 baris
         addKeyListener(this); //menambahkan window agar key keyboard dan window dapat berhubungan , harus membuat beberapa kelas yang berhubungan dengan key , key pressed , key typed , dan key released
@@ -49,7 +50,7 @@ public class window extends JFrame implements KeyListener{
         for(int row=0;row<4;row++){
             for(int column=0;column<4;column++){
                 String angka = String.valueOf(board.getBoardLabel()[row][column]);
-                
+
                 if(angka.equals("0")){
                     boardTile[row][column].setText(""); //jika 0 maka tidak usah di tampilkan apapun
                 }else{
@@ -165,6 +166,7 @@ public class window extends JFrame implements KeyListener{
         JFrame resetFrame = new JFrame("GAME OVER"); //menginisialisasi reset frame
         JButton resetButton = new JButton("RESET"); // menginisialisasi reset button
         resetFrame.setSize(300,100);  // mengeset ukuran fram untuk reset 
+        resetFrame.setLocationRelativeTo(null); //men set lokasi JFrame agar berada di tengah 
         resetButton.addActionListener(new ActionListener(){ // memasangkan button untuk dapat menerima sebuah tindakan (kasus ini di pencet)
             
             @Override
