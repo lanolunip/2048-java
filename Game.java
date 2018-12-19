@@ -35,7 +35,7 @@ public class Game{
         boardLabel[row][column] = twoOrFour;   
     }
 
-     public void up3(){ //versi ke 3 fungsi pada saat user menekan tombol atas ^
+    public void up3(){ //versi ke 3 fungsi pada saat user menekan tombol atas ^
         // int[][] copyTable = movedOrNot();
         for (int column = 0;column<4;column++){ 
             for(int row = 0;row<3;row++){
@@ -47,12 +47,14 @@ public class Game{
                         }
                     }
                 }
-                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 && boardLabel[row+1][column] != 0){
+                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 
+                    && boardLabel[row+1][column] != 0)
+                {
                     boardLabel[row][column]+=boardLabel[row+1][column];
                     boardLabel[row+1][column]=0;
                 }
             }
-         }
+        }
     }
 
     public void right(){ //fungsi saat user mennekan tombol kanan
@@ -67,7 +69,9 @@ public class Game{
                         }
                     }
                 }
-                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 && boardLabel[row+1][column] != 0){
+                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 
+                && boardLabel[row+1][column] != 0)
+                {
                     boardLabel[row][column]+=boardLabel[row+1][column];
                     boardLabel[row+1][column]=0;
                 }
@@ -88,7 +92,9 @@ public class Game{
                         }
                     }
                 }
-                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 && boardLabel[row+1][column] != 0){
+                if(boardLabel[row][column]==boardLabel[row+1][column] 
+                && boardLabel[row][column]!=0 && boardLabel[row+1][column] != 0)
+                {
                     boardLabel[row][column]+=boardLabel[row+1][column];
                     boardLabel[row+1][column]=0;
                 }
@@ -109,7 +115,9 @@ public class Game{
                         }
                     }
                 }
-                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 && boardLabel[row+1][column] != 0){
+                if(boardLabel[row][column]==boardLabel[row+1][column] && boardLabel[row][column]!=0 
+                && boardLabel[row+1][column] != 0)
+                {
                     boardLabel[row][column]+=boardLabel[row+1][column];
                     boardLabel[row+1][column]=0;
                 }
@@ -184,7 +192,9 @@ public class Game{
                             }
                         }
                     }
-                    if(copyTable[row][column]==copyTable[row+1][column] && copyTable[row][column]!=0 && copyTable[row+1][column] != 0){
+                    if(copyTable[row][column]==copyTable[row+1][column] && copyTable[row][column]!=0 
+                    && copyTable[row+1][column] != 0)
+                    {
                         copyTable[row][column]+=copyTable[row+1][column];
                         copyTable[row+1][column]=0;
                     }

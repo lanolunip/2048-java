@@ -36,6 +36,7 @@ public class window extends JFrame implements KeyListener{
                 boardTile[row][column] = new JLabel("",SwingConstants.CENTER); //Membuat jlabel , dan teks nya berada di tengah
                 boardTile[row][column].setBorder(border); // men setting agar JLabel yang baru di buat memiliki border di pinggirnya
                 boardTile[row][column].setFont(new Font("",Font.PLAIN,24)); //mengeset jenis font dan ukuran teks
+                boardTile[row][column].setOpaque(true);
                 add(boardTile[row][column]); //barulah di tambahkan JLabel yang sudah tersetting tadi ke dalam grid yang sudah di isi
             }
         }
@@ -47,8 +48,50 @@ public class window extends JFrame implements KeyListener{
     public void update(){ //Pengupdate bentuk grid ke windows 
         for(int row=0;row<4;row++){
             for(int column=0;column<4;column++){
-                boardTile[row][column].setText(String.valueOf(board.getBoardLabel()[row][column])); //mengikuti isi array Game 
-                // boardTile[row][column].setForeground(new Color(100,200,30)); //kemudian mengeset warna background sesuai dengan angka 
+                String angka = String.valueOf(board.getBoardLabel()[row][column]);
+                
+                if(angka.equals("0")){
+                    boardTile[row][column].setText(""); //jika 0 maka tidak usah di tampilkan apapun
+                }else{
+                    boardTile[row][column].setText(angka); //mengikuti isi array Game 
+                }
+
+                if (angka.equals("2") || angka.equals("0")){
+                    boardTile[row][column].setBackground(new Color(255,255,255)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("4")){
+                    boardTile[row][column].setBackground(new Color(100,100,100)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("8")){
+                    boardTile[row][column].setBackground(new Color(50,200,50)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("16")){
+                    boardTile[row][column].setBackground(new Color(100,200,100)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("32")){
+                    boardTile[row][column].setBackground(new Color(200,150,100)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("64")){
+                    boardTile[row][column].setBackground(new Color(75,230,60)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("128")){
+                    boardTile[row][column].setBackground(new Color(120,100,150)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("256")){
+                    boardTile[row][column].setBackground(new Color(180,80,180)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("512")){
+                    boardTile[row][column].setBackground(new Color(255,0,255)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("1024")){
+                    boardTile[row][column].setBackground(new Color(180,180,3)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("2048")){
+                    boardTile[row][column].setBackground(new Color(50,200,255)); //kemudian mengeset warna background sesuai dengan angka 
+                }
+                else if (angka.equals("4096")){
+                    boardTile[row][column].setBackground(new Color(200,20,160)); //kemudian mengeset warna background sesuai dengan angka 
+                }
             }
         }
     }
@@ -81,6 +124,12 @@ public class window extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent e) {
         
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) { //g pakai sih wkwk , 
+        
+    }
+    
     @Override
     public void keyPressed(KeyEvent e) {
         int[][] copy = board.copyTableData();
@@ -111,10 +160,6 @@ public class window extends JFrame implements KeyListener{
         }
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) { //g pakai sih wkwk , 
-        
-    }
 
     public void GameOver(){ // saat game berakhir
         JFrame resetFrame = new JFrame("GAME OVER"); //menginisialisasi reset frame
