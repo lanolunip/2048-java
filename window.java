@@ -17,11 +17,11 @@ import java.awt.Font;
 import javax.swing.SpringLayout.Constraints;
 
 public class window extends JFrame implements KeyListener{
-    private int     height  = 600;
-    private int     width   = 600;
-    private String  title   = "2048";
-    Game    board           = new Game(); 
-    JLabel  boardTile[][]   = new JLabel[4][4];
+    private int     height  = 600; //ukuran tinggi window
+    private int     width   = 600; //ukuran lebar window
+    private String  title   = "2048"; //judul Window
+    Game    board           = new Game(); //object game nya 
+    JLabel  boardTile[][]   = new JLabel[4][4]; //Array JLabel 
     Border  border          = BorderFactory.createLineBorder(Color.BLUE,5); //untuk border pada JLabel
 
     window(){ //memunculkan window (lebih tepatnya inisialisasi awal)
