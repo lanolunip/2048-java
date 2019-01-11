@@ -35,9 +35,9 @@ public class window extends JFrame implements KeyListener{
         for(int row=0;row<4;row++){
             for(int column=0;column<4;column++){
                 boardTile[row][column] = new JLabel("",SwingConstants.CENTER); //Membuat jlabel , dan teks nya berada di tengah
-                boardTile[row][column].setBorder(border); // men setting agar JLabel yang baru di buat memiliki border di pinggirnya
+                boardTile[row][column].setBorder(border); // mensetting agar JLabel yang baru di buat memiliki border di pinggirnya
                 boardTile[row][column].setFont(new Font("",Font.PLAIN,24)); //mengeset jenis font dan ukuran teks
-                boardTile[row][column].setOpaque(true);
+                boardTile[row][column].setOpaque(true); //agar dapat di ganti ganti warna background nya (JLabel)
                 add(boardTile[row][column]); //barulah di tambahkan JLabel yang sudah tersetting tadi ke dalam grid yang sudah di isi
             }
         }
